@@ -1,0 +1,87 @@
+\begin{tabularx}{\textwidth}{|YY *9{|c} *6{|c}|}
+\toprule
+\multirow{2}{*}{\textbf{Operation}} &
+\multicolumn{1}{|Y|}{\multirow{2}{*}{\textbf{Offset}}} &
+\multicolumn{15}{c|}{\textbf{Control lines}} \\
+&\multicolumn{1}{|Y|}{}  &
+\signal{OFFSET\_NEXT\_SEL} & 		% 1 bit
+\signal{OFFSET\_NEXT} &			% 6 bits
+\signal{ALUCTL} &				% 3 bits
+\signal{ALU\_OP\_SELECT} &		% 3 bits
+\signal{WRITE\_MEM} &			% 1 bit
+\signal{WRITE\_FLAGS} &			% 1 bit
+\signal{WRITE\_IR} &			% 1 bit
+\signal{WRITE\_PC} &			% 1 bit
+\signal{PC\_SOURCE} &			% 2 bits
+\signal{WRITE\_MDR} &			% 1 bit
+\signal{MDR\_SOURCE} &			% 2 bits
+\signal{WRITE\_MAR} &			% 1 bit
+\signal{MAR\_SOURCE} &			% 1 bit
+\signal{WRITE\_AC} &			% 1 bit
+\signal{AC\_SOURCE} \\			% 2 bits
+\midrule\midrule
+
+& \multicolumn{1}{|Y|}{\texttt{00}} &
+x & xxxxxx & xxx & xxx & x & x & x & x & xx & x & xx & x & x & x & xx \\
+\midrule
+AC $\gets$ AC - Mem & \multicolumn{1}{|Y|}{\texttt{16}} &
+1 & 010111 & xxx & xxx & 0 & 0 & 0 & 0 & xx & 0 & xx & 1 & 1 & 0 & xx \\
+\midrule
+& \multicolumn{1}{|Y|}{\texttt{17}} &
+1 & 011000 & xxx & xxx & 0 & 0 & 0 & 0 & xx & 0 & xx & 0 & x & 0 & xx \\
+\midrule
+& \multicolumn{1}{|Y|}{\texttt{18}} &
+1 & 011001 & xxx & xxx & 0 & 0 & 0 & 0 & xx & 1 & 01 & 0 & x & 0 & xx \\
+\midrule
+& \multicolumn{1}{|Y|}{\texttt{19}} &
+1 & 000000 & 010 & 111 & 0 & 1 & 0 & 1 & 00 & 0 & xx & 0 & x & 1 & 10 \\
+\midrule
+AC $\gets$ AC $\oplus$ Mem & \multicolumn{1}{|Y|}{\texttt{1a}} &
+1 & 011011 & xxx & xxx & 0 & 0 & 0 & 0 & xx & 0 & xx & 1 & 1 & 0 & xx \\
+\midrule
+& \multicolumn{1}{|Y|}{\texttt{1b}} &
+1 & 011100 & xxx & xxx & 0 & 0 & 0 & 0 & xx & 0 & xx & 0 & x & 0 & xx \\
+\midrule
+& \multicolumn{1}{|Y|}{\texttt{1c}} &
+1 & 011101 & xxx & xxx & 0 & 0 & 0 & 0 & xx & 1 & 01 & 0 & x & 0 & xx \\
+\midrule
+& \multicolumn{1}{|Y|}{\texttt{1d}} &
+1 & 000000 & 110 & 111 & 0 & 1 & 0 & 1 & 00 & 0 & xx & 0 & x & 1 & 10 \\
+\midrule
+AC $\gets$ AC NOR Mem & \multicolumn{1}{|Y|}{\texttt{1e}} &
+1 & 011111 & xxx & xxx & 0 & 0 & 0 & 0 & xx & 0 & xx & 1 & 1 & 0 & xx \\
+\midrule
+& \multicolumn{1}{|Y|}{\texttt{1f}} &
+1 & 100000 & xxx & xxx & 0 & 0 & 0 & 0 & xx & 0 & xx & 0 & x & 0 & xx \\
+\midrule
+& \multicolumn{1}{|Y|}{\texttt{20}} &
+1 & 100001 & xxx & xxx & 0 & 0 & 0 & 0 & xx & 1 & 01 & 0 & x & 0 & xx \\
+\midrule
+& \multicolumn{1}{|Y|}{\texttt{21}} &
+1 & 000000 & 101 & 111 & 0 & 1 & 0 & 1 & 00 & 0 & xx & 0 & x & 1 & 10 \\
+\midrule
+AC $\gets$ AC NAND Mem & \multicolumn{1}{|Y|}{\texttt{22}} &
+1 & 100011 & xxx & xxx & 0 & 0 & 0 & 0 & xx & 0 & xx & 1 & 1 & 0 & xx \\
+\midrule
+& \multicolumn{1}{|Y|}{\texttt{23}} &
+1 & 100100 & xxx & xxx & 0 & 0 & 0 & 0 & xx & 0 & xx & 0 & x & 0 & xx \\
+\midrule
+& \multicolumn{1}{|Y|}{\texttt{24}} &
+1 & 100101 & xxx & xxx & 0 & 0 & 0 & 0 & xx & 1 & 01 & 0 & x & 0 & xx \\
+\midrule
+& \multicolumn{1}{|Y|}{\texttt{25}} &
+1 & 000000 & 100 & 111 & 0 & 1 & 0 & 1 & 00 & 0 & xx & 0 & x & 1 & 10 \\
+\midrule
+AC $\gets$ AC + immediate & \multicolumn{1}{|Y|}{\texttt{26}} &
+1 & 000000 & 000 & 110 & 0 & 1 & 0 & 1 & 00 & 0 & xx & 0 & x & 1 & 10 \\
+\midrule
+AC $\gets \overline{\rm AC}$ & \multicolumn{1}{|Y|}{\texttt{27}} &
+1 & 000000 & 110 & 011 & 0 & 1 & 0 & 1 & 00 & 0 & xx & 0 & x & 1 & 10 \\
+\midrule
+Shift Right Arithmetic & \multicolumn{1}{|Y|}{\texttt{28}} &
+1 & 000000 & 111 & 101 & 0 & 1 & 0 & 1 & 00 & 0 & xx & 0 & x & 1 & 10 \\
+\midrule
+Shift Left Arithmetic& \multicolumn{1}{|Y|}{\texttt{29}} &
+1 & 000000 & 000 & 101 & 0 & 1 & 0 & 1 & 00 & 0 & xx & 0 & x & 1 & 10 \\
+\bottomrule
+\end{tabularx}

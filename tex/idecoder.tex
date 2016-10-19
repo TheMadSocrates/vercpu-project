@@ -1,0 +1,9 @@
+\label{subsec:idecoder}
+The instruction decoder acts as an offset table into the microcode ROM (section
+\ref{subsec:microcode_rom}), pointing to the start of the set of
+microoperations that are to be executed to complete the desired operation.
+Conditional branches are evaluated at this point as well, with the offset for
+branch failed and branch taken computed within the unit. During the instruction
+decode stage, the microcode sequencer (section \ref{subsec:microseq})
+utilizes the offset from the instruction decoder to redirect control to the
+proper offset on the ROM table.

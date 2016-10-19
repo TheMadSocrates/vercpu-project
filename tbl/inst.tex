@@ -1,0 +1,52 @@
+The following is the processor's instruction set.
+\begin{table}[h]
+	\centering
+	\begin{tabu}[c]{|l|c|X|cccc|}
+		\toprule
+		\multirow{2}{*}{\textbf{Instruction}} &
+		\multirow{2}{*}{\textbf{Opcode}} &
+		\multirow{2}{*}{\textbf{Operation}} &
+		\multicolumn{4}{c|}{\textbf{Flags}} \\
+		& & & V & N & C & Z \\
+		\midrule\midrule
+		\texttt{addi addr} & \texttt{00aa} & $ac \gets ac + [addr]$ & x & x & x
+		& x \\
+		\texttt{sto addr} & \texttt{01aa} & $[addr] \gets ac$ & - & - & - & -
+		\\
+		\texttt{ld addr} & \texttt{02aa} & $ac \gets [addr]$ & - & - & - & - \\
+		\texttt{jmp tgt} & \texttt{03ii} & $pc \gets tgt$ & - & - & - & - \\
+		\texttt{jneg tgt} & \texttt{04ii} & if $N$ $pc \gets tgt$ else $pc
+		\gets pc + 1$ & - & - & - & - \\
+		\texttt{sub addr} & \texttt{05aa} & $ac \gets ac - [addr]$ & x & x & x
+		& x \\
+		\texttt{xor addr} & \texttt{06aa} & $ac \gets ac \oplus [addr]$ & 0 & 0
+		& 0 & x \\
+		\texttt{nor addr} & \texttt{07aa} & $ac \gets \neg (ac \lor [addr])$ &
+		0 & 0 & 0 & x \\
+		\texttt{nand addr} & \texttt{08aa} & $ac \gets \neg (ac \land [addr])$
+		& 0 & 0 & 0 & x \\
+		\texttt{jpos tgt} & \texttt{09ii} & if $\neg N \land \neg Z$ $pc \gets tgt$ else
+		$pc \gets pc + 1$ & - & - & - & - \\
+		\texttt{jz tgt} & \texttt{0aii} & if $Z$ $pc \gets tgt$ else $pc \gets
+		pc + 1$ & - & - & - & - \\
+		\texttt{addi const} & \texttt{0bii} & $ac \gets ac + const$ & x & x & x
+		& x \\
+		\texttt{sla} & \texttt{0d00} & $ac \gets \{ac[6:0],0\}$ & x & x & x & x
+		\\
+		\texttt{sra} & \texttt{0e00} & $ac \gets \{ac[7], ac[7:1]\}$, $C \gets
+		ac[0]$ & 0 & 0 & x & x \\
+		\texttt{jcst tgt} & \texttt{70ii} & if $C$ $pc \gets tgt$ else $pc
+		\gets pc + 1$ & - & - & - & - \\
+		\texttt{jovs tgt} & \texttt{71ii} & if $V$ $pc \gets tgt$ else $pc
+		\gets pc + 1$ & - & - & - & - \\
+		\texttt{inc} & \texttt{7200} & $ac \gets ac + 1$ & x & x & x & x \\
+		\texttt{cmpi const} & \texttt{73ii} & $ac - const$ & x & x & x & x \\
+		\texttt{cmp addr} & \texttt{74aa} & $ac - [addr]$ & x & x & x & x \\
+		\texttt{inva} & \texttt{7500} & $ac \gets \neg ac$ & 0 & 0 & 0 & x \\
+		\texttt{clra} & \texttt{7e00} & $ac \gets 0$ & 0 & 0 & 0 & 1 \\
+		\texttt{ldi const} & \texttt{7fii} & $ac \gets const$ & - & - &- & - \\
+		\bottomrule
+	\end{tabu}
+	\caption{Processor instruction set}
+	\label{tb:iset}
+\end{table}

@@ -1,0 +1,17 @@
+The main objective of this project is to design and implement a simple 8-bit
+CPU with memory using the Verilog HDL. In order to learn more about different
+CPU implementations, the design uses a horizontal microcode implementation. We
+chose horizontal microcode implementation because of the ability to easily
+update how instructions are processed and to add more useful instructions for
+future revisions. The CPU has 256 bytes of memory with access controlled by a
+memory address register and a memory data register. Other than the memory data
+register, the CPU has one main register to be able to manipulate data, the
+accumulator register. The CPU will recognize and execute 22 different
+instructions, outlined below in Appendix \ref{app:proc_iset}, with the exact
+microcode implementation represented in the table in
+Appendix \ref{app:mcrom}. The arithmetic logic unit, explained in the Datapath
+section, will be able to choose from up to 8 operands in conjunction with the
+accumulator register. The other objective was to be able to synthesize our
+Verilog design into a real FPGA, the Spartan-6 the Nexys3 board. The 4 digit,
+7 segment LED display on the Nexys3 is programmed to display the full 16-bit
+instruction for debugging purposes.

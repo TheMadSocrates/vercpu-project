@@ -1,0 +1,139 @@
+\begin{longtabu}to \linewidth {|cc *9{c} *6{c}|}
+\toprule
+\multirow{2}{*}{\textbf{Operation}} &
+\multicolumn{1}{|c|}{\multirow{2}{*}{\textbf{Offset}}} &
+\multicolumn{15}{c|}{\textbf{ROM Contents}} \\
+&\multicolumn{1}{|c|}{}  &
+\signal{OFFSET\_NEXT\_SEL} & 		% 1 bit
+\signal{OFFSET\_NEXT} &			% 6 bits
+\signal{ALUCTL} &				% 3 bits
+\signal{ALU\_OP\_SELECT} &		% 3 bits
+\signal{WRITE\_MEM} &			% 1 bit
+\signal{WRITE\_FLAGS} &			% 1 bit
+\signal{WRITE\_IR} &			% 1 bit
+\signal{WRITE\_PC} &			% 1 bit
+\signal{PC\_SOURCE} &			% 2 bits
+\signal{WRITE\_MDR} &			% 1 bit
+\signal{MDR\_SOURCE} &			% 2 bits
+\signal{WRITE\_MAR} &			% 1 bit
+\signal{MAR\_SOURCE} &			% 1 bit
+\signal{WRITE\_AC} &			% 1 bit
+\signal{AC\_SOURCE} \\			% 2 bits
+\midrule\midrule
+
+\texttt{fetch} & \multicolumn{1}{|c|}{\texttt{00}} &
+1 & 000001 & xxx & xxx & 0 & 0 & 1 & 0 & xx & 0 & xx & 0 & x & 0 & xx \\
+\midrule
+\texttt{dec} & \multicolumn{1}{|c|}{\texttt{01}} &
+0 & xxxxxx & xxx & xxx & 0 & 0 & 0 & 0 & xx & 0 & xx & 0 & x & 0 & xx \\
+\midrule
+\texttt{clr} & \multicolumn{1}{|c|}{\texttt{02}} &
+1 & 000000 & 110 & 101 & 0 & 1 & 0 & 1 & 00 & 0 & xx & 0 & x & 1 & 10 \\
+\midrule
+\texttt{ldi const} & \multicolumn{1}{|c|}{\texttt{03}} &
+1 & 000000 & xxx & xxx & 0 & 0 & 0 & 1 & 00 & 0 & xx & 0 & x & 1 & 11 \\
+\midrule
+\multirow{4}{*}{\texttt{ld addr}}
+& \multicolumn{1}{|c|}{\texttt{04}} &
+1 & 000101 & xxx & xxx & 0 & 0 & 0 & 0 & xx & 0 & xx & 1 & 1 & 0 & xx \\
+& \multicolumn{1}{|c|}{\texttt{05}} &
+1 & 000110 & xxx & xxx & 0 & 0 & 0 & 0 & xx & 0 & xx & 0 & x & 0 & xx \\
+& \multicolumn{1}{|c|}{\texttt{06}} &
+1 & 000111 & xxx & xxx & 0 & 0 & 0 & 0 & xx & 1 & 01 & 0 & x & 0 & xx \\
+& \multicolumn{1}{|c|}{\texttt{07}} &
+1 & 000000 & xxx & xxx & 0 & 0 & 0 & 1 & 00 & 0 & xx & 0 & x & 1 & 01 \\
+\midrule
+\multirow{2}{*}{\texttt{sto addr}} & \multicolumn{1}{|c|}{\texttt{08}} &
+1 & 001001 & xxx & xxx & 0 & 0 & 0 & 0 & xx & 1 & 11 & 1 & 1 & 0 & xx \\
+& \multicolumn{1}{|c|}{\texttt{09}} &
+1 & 000000 & xxx & xxx & 1 & 0 & 0 & 1 & 00 & 0 & xx & 0 & x & 0 & xx \\
+\midrule
+\multirow{4}{*}{\texttt{add addr}} & \multicolumn{1}{|c|}{\texttt{0a}} &
+1 & 001011 & xxx & xxx & 0 & 0 & 0 & 0 & xx & 0 & xx & 1 & 1 & 0 & xx \\
+& \multicolumn{1}{|c|}{\texttt{0b}} &
+1 & 001100 & xxx & xxx & 0 & 0 & 0 & 0 & xx & 0 & xx & 0 & x & 0 & xx \\
+& \multicolumn{1}{|c|}{\texttt{0c}} &
+1 & 001101 & xxx & xxx & 0 & 0 & 0 & 0 & xx & 1 & 01 & 0 & x & 0 & xx \\
+& \multicolumn{1}{|c|}{\texttt{0d}} &
+1 & 000000 & 000 & 111 & 0 & 1 & 0 & 1 & 00 & 0 & xx & 0 & x & 1 & 10 \\
+\midrule
+\texttt{jmpt} & \multicolumn{1}{|c|}{\texttt{0e}} &
+1 & 000000 & xxx & xxx & 0 & 0 & 0 & 1 & 01 & 0 & xx & 0 & x & 0 & xx \\
+\midrule
+\texttt{jmpnt} & \multicolumn{1}{|c|}{\texttt{0f}} &
+1 & 000000 & xxx & xxx & 0 & 0 & 0 & 1 & 00 & 0 & xx & 0 & x & 0 & xx \\
+\midrule
+\texttt{inc} & \multicolumn{1}{|c|}{\texttt{10}} &
+1 & 000000 & 000 & 001 & 0 & 1 & 0 & 1 & 00 & 0 & xx & 0 & x & 1 & 10 \\
+\midrule
+\texttt{cmpi const} & \multicolumn{1}{|c|}{\texttt{11}} &
+1 & 000000 & 010 & 110 & 0 & 1 & 0 & 1 & 00 & 0 & xx & 0 & x & 0 & xx \\
+\midrule
+\multirow{4}{*}{\texttt{cmp addr}} & \multicolumn{1}{|c|}{\texttt{12}} &
+1 & 010011 & xxx & xxx & 0 & 0 & 0 & 0 & xx & 0 & xx & 1 & 1 & 0 & xx \\
+& \multicolumn{1}{|c|}{\texttt{13}} &
+1 & 010100 & xxx & xxx & 0 & 0 & 0 & 0 & xx & 0 & xx & 0 & x & 0 & xx \\
+& \multicolumn{1}{|c|}{\texttt{14}} &
+1 & 010101 & xxx & xxx & 0 & 0 & 0 & 0 & xx & 1 & 01 & 0 & x & 0 & xx \\
+& \multicolumn{1}{|c|}{\texttt{15}} &
+1 & 000000 & 010 & 111 & 0 & 1 & 0 & 1 & 00 & 0 & xx & 0 & x & 0 & xx \\
+\midrule
+\multirow{4}{*}{\texttt{sub addr}} & \multicolumn{1}{|c|}{\texttt{16}} &
+1 & 010111 & xxx & xxx & 0 & 0 & 0 & 0 & xx & 0 & xx & 1 & 1 & 0 & xx \\
+& \multicolumn{1}{|c|}{\texttt{17}} &
+1 & 011000 & xxx & xxx & 0 & 0 & 0 & 0 & xx & 0 & xx & 0 & x & 0 & xx \\
+& \multicolumn{1}{|c|}{\texttt{18}} &
+1 & 011001 & xxx & xxx & 0 & 0 & 0 & 0 & xx & 1 & 01 & 0 & x & 0 & xx \\
+& \multicolumn{1}{|c|}{\texttt{19}} &
+1 & 000000 & 010 & 111 & 0 & 1 & 0 & 1 & 00 & 0 & xx & 0 & x & 1 & 10 \\
+\midrule
+\multirow{4}{*}{\texttt{xor addr}} & \multicolumn{1}{|c|}{\texttt{1a}} &
+1 & 011011 & xxx & xxx & 0 & 0 & 0 & 0 & xx & 0 & xx & 1 & 1 & 0 & xx \\
+& \multicolumn{1}{|c|}{\texttt{1b}} &
+1 & 011100 & xxx & xxx & 0 & 0 & 0 & 0 & xx & 0 & xx & 0 & x & 0 & xx \\
+& \multicolumn{1}{|c|}{\texttt{1c}} &
+1 & 011101 & xxx & xxx & 0 & 0 & 0 & 0 & xx & 1 & 01 & 0 & x & 0 & xx \\
+& \multicolumn{1}{|c|}{\texttt{1d}} &
+1 & 000000 & 110 & 111 & 0 & 1 & 0 & 1 & 00 & 0 & xx & 0 & x & 1 & 10 \\
+\midrule
+\multirow{4}{*}{\texttt{nor addr}} & \multicolumn{1}{|c|}{\texttt{1e}} &
+1 & 011111 & xxx & xxx & 0 & 0 & 0 & 0 & xx & 0 & xx & 1 & 1 & 0 & xx \\
+& \multicolumn{1}{|c|}{\texttt{1f}} &
+1 & 100000 & xxx & xxx & 0 & 0 & 0 & 0 & xx & 0 & xx & 0 & x & 0 & xx \\
+& \multicolumn{1}{|c|}{\texttt{20}} &
+1 & 100001 & xxx & xxx & 0 & 0 & 0 & 0 & xx & 1 & 01 & 0 & x & 0 & xx \\
+& \multicolumn{1}{|c|}{\texttt{21}} &
+1 & 000000 & 101 & 111 & 0 & 1 & 0 & 1 & 00 & 0 & xx & 0 & x & 1 & 10 \\
+\midrule
+\multirow{4}{*}{\texttt{nand addr}} & \multicolumn{1}{|c|}{\texttt{22}} &
+1 & 100011 & xxx & xxx & 0 & 0 & 0 & 0 & xx & 0 & xx & 1 & 1 & 0 & xx \\
+& \multicolumn{1}{|c|}{\texttt{23}} &
+1 & 100100 & xxx & xxx & 0 & 0 & 0 & 0 & xx & 0 & xx & 0 & x & 0 & xx \\
+& \multicolumn{1}{|c|}{\texttt{24}} &
+1 & 100101 & xxx & xxx & 0 & 0 & 0 & 0 & xx & 1 & 01 & 0 & x & 0 & xx \\
+& \multicolumn{1}{|c|}{\texttt{25}} &
+1 & 000000 & 100 & 111 & 0 & 1 & 0 & 1 & 00 & 0 & xx & 0 & x & 1 & 10 \\
+\midrule
+\texttt{addi const} & \multicolumn{1}{|c|}{\texttt{26}} &
+1 & 000000 & 000 & 110 & 0 & 1 & 0 & 1 & 00 & 0 & xx & 0 & x & 1 & 10 \\
+\midrule
+\texttt{inv} & \multicolumn{1}{|c|}{\texttt{27}} &
+1 & 000000 & 110 & 011 & 0 & 1 & 0 & 1 & 00 & 0 & xx & 0 & x & 1 & 10 \\
+\midrule
+\texttt{sra} & \multicolumn{1}{|c|}{\texttt{28}} &
+1 & 000000 & 111 & 101 & 0 & 1 & 0 & 1 & 00 & 0 & xx & 0 & x & 1 & 10 \\
+\midrule
+\texttt{sla} & \multicolumn{1}{|c|}{\texttt{29}} &
+1 & 000000 & 000 & 101 & 0 & 1 & 0 & 1 & 00 & 0 & xx & 0 & x & 1 & 10 \\
+\midrule
+\texttt{unused} & \multicolumn{1}{|c|}{\texttt{xx}} &
+1 & 111111 & 000 & 000 & 0 & 0 & 0 & 0 & 00 & 0 & 00 & 0 & 0 & 0 & 00 \\
+\bottomrule
+\end{longtabu}
+%\label{tb:microcode_rom}
+%\captionof{table}{Microcode ROM table}
+%\begin{table}
+%	\centering
+%	\caption{Microcode ROM table}
+%	\label{tb:microcode_rom}
+%\end{table}

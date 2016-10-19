@@ -1,0 +1,90 @@
+\documentclass[letterpaper,11pt]{report}
+\usepackage[margin=1in]{geometry}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{import}
+\usepackage{amsmath}
+\usepackage{amsfonts,bbold,amssymb}
+\usepackage{enumerate}
+\usepackage{import}
+\usepackage{tabu}
+\usepackage{longtable}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{caption}
+\usepackage{array}
+\usepackage{pdfpages}
+\usepackage[toc,page]{appendix}
+
+\usetikzlibrary{arrows,automata}
+
+\newtheorem{definition}{Definition}
+
+\newcommand{\set}[1]{$\mathbb{#1}$}
+\newcommand{\setm}[1]{\mathbb{#1}}
+\newcommand{\defend}{\hfill$\blacktriangleleft$}
+
+\title{Design of a Tiny Computer}
+\author{Orlando Arias\\David Mascenik}
+
+\definecolor{CommentGreen}{rgb}{0,.6,0}
+\definecolor{numbering}{gray}{0.5}
+\definecolor{keywordc}{rgb}{.63,0,.42}
+
+\lstdefinestyle{vcode}{
+	basicstyle=\ttfamily\small,
+	language=verilog,
+	numbers=none,
+	numberstyle=\footnotesize\color{numbering},
+	fontadjust=true,
+	basewidth=0.5em,
+	% flexiblecolumns=true,
+	keywordstyle={\bfseries\color{magenta}},
+	commentstyle=\color{CommentGreen},
+	stringstyle=\color{red},
+	tabsize=4,
+}
+
+%\newcolumntype{Y}{>{\centering\arraybackslash}X}
+\newcommand{\lbl}[1]{\rlap{\rotatebox{90}{#1}}}
+\newcommand{\signal}[1]{\lbl{\texttt{#1}}}
+
+\begin{document}
+	\maketitle
+	\tableofcontents
+	\chapter{Preliminaries}
+	\section{Introduction}
+	\import{./}{intro.tex}
+	\section{Objectives}
+	\import{./}{objectives.tex}
+	\section{Contributions by member}
+	\import{./}{contrib.tex}
+	\chapter{Processor Description}
+	\section{Overview}
+	\import{./}{procoverview.tex}
+	\section{Instruction Set}
+	\import{./}{iset.tex}
+	\section{Datapath}
+	\import{./}{datapath.tex}
+	\section{Control Unit}
+	\import{./}{control.tex}
+	\subsection{Instruction Decoder}
+	\import{./}{idecoder.tex}
+	\subsection{Microcode Sequencer}
+	\import{./}{mcodeseq.tex}
+	\subsection{Microcode ROM}
+	\import{./}{mcoderom.tex}
+	\chapter{RTL}
+	\import{./}{rtl.tex}
+	\begin{appendices}
+		\chapter{Processor Instruction Set}\label{app:proc_iset}
+		\import{../tbl/}{inst.tex}
+		\chapter{Microcode ROM}\label{app:mcrom}
+		\import{../tbl/}{microcoderom.tex}
+		\chapter{Testbench}\label{app:testbench}
+		\import{./}{testbench.tex}
+	\end{appendices}
+\end{document}

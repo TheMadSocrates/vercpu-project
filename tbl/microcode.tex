@@ -1,0 +1,93 @@
+\begin{tabularx}{\linewidth}{|YY *9{|c} *6{|c}|}
+\toprule
+\multirow{2}{*}{\textbf{Operation}} &
+\multicolumn{1}{|Y|}{\multirow{2}{*}{\textbf{Offset}}} &
+\multicolumn{15}{c|}{\textbf{Control lines}} \\
+&\multicolumn{1}{|Y|}{}  &
+\signal{OFFSET\_NEXT\_SEL} & 		% 1 bit
+\signal{OFFSET\_NEXT} &			% 6 bits
+\signal{ALUCTL} &				% 3 bits
+\signal{ALU\_OP\_SELECT} &		% 3 bits
+\signal{WRITE\_MEM} &			% 1 bit
+\signal{WRITE\_FLAGS} &			% 1 bit
+\signal{WRITE\_IR} &			% 1 bit
+\signal{WRITE\_PC} &			% 1 bit
+\signal{PC\_SOURCE} &			% 2 bits
+\signal{WRITE\_MDR} &			% 1 bit
+\signal{MDR\_SOURCE} &			% 2 bits
+\signal{WRITE\_MAR} &			% 1 bit
+\signal{MAR\_SOURCE} &			% 1 bit
+\signal{WRITE\_AC} &			% 1 bit
+\signal{AC\_SOURCE} \\			% 2 bits
+\midrule\midrule
+
+& \multicolumn{1}{|Y|}{\texttt{00}} &
+x & xxxxxx & xxx & xxx & x & x & x & x & xx & x & xx & x & x & x & xx \\
+\midrule
+Fetch & \multicolumn{1}{|Y|}{\texttt{00}} &
+1 & 000001 & xxx & xxx & 0 & 0 & 1 & 0 & xx & 0 & xx & 0 & x & 0 & xx \\
+\midrule
+Decode & \multicolumn{1}{|Y|}{\texttt{01}} &
+0 & xxxxxx & xxx & xxx & 0 & 0 & 0 & 0 & xx & 0 & xx & 0 & x & 0 & xx \\
+\midrule
+Clear AC & \multicolumn{1}{|Y|}{\texttt{02}} &
+1 & 000000 & 110 & 101 & 0 & 1 & 0 & 1 & 00 & 0 & xx & 0 & x & 1 & 10 \\
+\midrule
+AC $\gets$ immediate & \multicolumn{1}{|Y|}{\texttt{03}} &
+1 & 000000 & xxx & xxx & 0 & 0 & 0 & 1 & 00 & 0 & xx & 0 & x & 1 & 11 \\
+\midrule
+AC $\gets$ Mem & \multicolumn{1}{|Y|}{\texttt{04}} &
+1 & 000101 & xxx & xxx & 0 & 0 & 0 & 0 & xx & 0 & xx & 1 & 1 & 0 & xx \\
+\midrule
+& \multicolumn{1}{|Y|}{\texttt{05}} &
+1 & 000110 & xxx & xxx & 0 & 0 & 0 & 0 & xx & 0 & xx & 0 & x & 0 & xx \\
+\midrule
+& \multicolumn{1}{|Y|}{\texttt{06}} &
+1 & 000111 & xxx & xxx & 0 & 0 & 0 & 0 & xx & 1 & 01 & 0 & x & 0 & xx \\
+\midrule
+& \multicolumn{1}{|Y|}{\texttt{07}} &
+1 & 000000 & xxx & xxx & 0 & 0 & 0 & 1 & 00 & 0 & xx & 0 & x & 1 & 01 \\
+\midrule
+Mem $\gets$ AC & \multicolumn{1}{|Y|}{\texttt{08}} &
+1 & 001001 & xxx & xxx & 0 & 0 & 0 & 0 & xx & 1 & 11 & 1 & 1 & 0 & xx \\
+\midrule
+& \multicolumn{1}{|Y|}{\texttt{09}} &
+1 & 000000 & xxx & xxx & 1 & 0 & 0 & 1 & 00 & 0 & xx & 0 & x & 0 & xx \\
+\midrule
+AC $\gets$ AC + Mem & \multicolumn{1}{|Y|}{\texttt{0a}} &
+1 & 001011 & xxx & xxx & 0 & 0 & 0 & 0 & xx & 0 & xx & 1 & 1 & 0 & xx \\
+\midrule
+& \multicolumn{1}{|Y|}{\texttt{0b}} &
+1 & 001100 & xxx & xxx & 0 & 0 & 0 & 0 & xx & 0 & xx & 0 & x & 0 & xx \\
+\midrule
+& \multicolumn{1}{|Y|}{\texttt{0c}} &
+1 & 001101 & xxx & xxx & 0 & 0 & 0 & 0 & xx & 1 & 01 & 0 & x & 0 & xx \\
+\midrule
+& \multicolumn{1}{|Y|}{\texttt{0d}} &
+1 & 000000 & 000 & 111 & 0 & 1 & 0 & 1 & 00 & 0 & xx & 0 & x & 1 & 10 \\
+\midrule
+Branch & \multicolumn{1}{|Y|}{\texttt{0e}} &
+1 & 000000 & xxx & xxx & 0 & 0 & 0 & 1 & 01 & 0 & xx & 0 & x & 0 & xx \\
+\midrule
+Conditional branch not taken & \multicolumn{1}{|Y|}{\texttt{0f}} &
+1 & 000000 & xxx & xxx & 0 & 0 & 0 & 1 & 00 & 0 & xx & 0 & x & 0 & xx \\
+\midrule
+AC $\gets$ AC + 1 & \multicolumn{1}{|Y|}{\texttt{10}} &
+1 & 000000 & 000 & 001 & 0 & 1 & 0 & 1 & 00 & 0 & xx & 0 & x & 1 & 10 \\
+\midrule
+Compare AC with immediate & \multicolumn{1}{|Y|}{\texttt{11}} &
+1 & 000000 & 010 & 110 & 0 & 1 & 0 & 1 & 00 & 0 & xx & 0 & x & 0 & xx \\
+\midrule
+Compare AC with immediate address value & \multicolumn{1}{|Y|}{\texttt{12}} &
+1 & 010011 & xxx & xxx & 0 & 0 & 0 & 0 & xx & 0 & xx & 1 & 1 & 0 & xx \\
+\midrule
+& \multicolumn{1}{|Y|}{\texttt{13}} &
+1 & 010100 & xxx & xxx & 0 & 0 & 0 & 0 & xx & 0 & xx & 0 & x & 0 & xx \\
+\midrule
+& \multicolumn{1}{|Y|}{\texttt{14}} &
+1 & 010101 & xxx & xxx & 0 & 0 & 0 & 0 & xx & 1 & 01 & 0 & x & 0 & xx \\
+\midrule
+& \multicolumn{1}{|Y|}{\texttt{15}} &
+1 & 000000 & 010 & 111 & 0 & 1 & 0 & 1 & 00 & 0 & xx & 0 & x & 0 & xx \\
+\bottomrule
+\end{tabularx}

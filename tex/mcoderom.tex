@@ -1,0 +1,12 @@
+\label{subsec:microcode_rom}
+A microcode ROM is implemented to be used by the sequencer in the instruction
+decoder. The ROM contains the microoperations to be performed when executing
+every instruction. A horizontal microcode implementation is chosen, as it
+provides flexibilty whilst keeping complexity to a minimum. In a horizontal
+implementation, each bit of the microinstruction encodes the value of a
+particular control line for the datapath. This, in practice is a way to
+abstract the state machine used in the control unit, providing also the ability
+to easily add instructions.\par
+
+The table in Appendix \ref{app:mcrom} shows the contents of
+the ROM with the associated instruction and the offset.
