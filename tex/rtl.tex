@@ -5,35 +5,35 @@ subsystems. The processor was FPGA tested on a Digilent Nexys 3 board with the
 configuration listed in section \ref{sec:pc_system}. A testbench and output for
 the processor can be found in Appendix \ref{app:testbench}.
 \subsection{ALU definitions -- \texttt{aludefs.v}}
-\lstinputlisting[style=vcode]{../rtl/aludefs.v}
+\lstinputlisting[style=vcode]{../rtl/core/aludefs.v}
 \subsection{Microcode definitions -- \texttt{microcodedefs.v}}
-\lstinputlisting[style=vcode]{../rtl/microcodedefs.v}
+\lstinputlisting[style=vcode]{../rtl/core/microcodedefs.v}
 \section{Generic modules}
 \subsection{Multiplexers -- \texttt{mux.v}}
-\lstinputlisting[style=vcode]{../rtl/mux.v}
+\lstinputlisting[style=vcode]{../rtl/core/mux.v}
 \subsection{Registers -- \texttt{ff\_d.v}}
-\lstinputlisting[style=vcode]{../rtl/ff_d.v}
+\lstinputlisting[style=vcode]{../rtl/core/ff_d.v}
 \section{Processor modules}
 \subsection{ALU -- \texttt{ALU.v}}
-\lstinputlisting[style=vcode]{../rtl/ALU.v}
+\lstinputlisting[style=vcode]{../rtl/core/ALU.v}
 \subsection{Datapath module -- \texttt{datapath.v}}
-\lstinputlisting[style=vcode]{../rtl/datapath.v}
+\lstinputlisting[style=vcode]{../rtl/core/datapath.v}
 \subsection{Decoder complex -- \texttt{decoder\_complex.v}}
-\lstinputlisting[style=vcode]{../rtl/decoder_complex.v}
+\lstinputlisting[style=vcode]{../rtl/core/decoder_complex.v}
 \subsection{Microcode ROM -- \texttt{microcode\_rom.v}}
-\lstinputlisting[style=vcode]{../rtl/microcode_rom.v}
+\lstinputlisting[style=vcode]{../rtl/core/microcode_rom.v}
 \subsection{Control unit -- \texttt{controller\_unit.v}}
-\lstinputlisting[style=vcode]{../rtl/controller_unit.v}
+\lstinputlisting[style=vcode]{../rtl/core/controller_unit.v}
 \subsection{Processor toplevel -- \texttt{processor.v}}
-\lstinputlisting[style=vcode]{../rtl/processor.v}
+\lstinputlisting[style=vcode]{../rtl/core/processor.v}
 \section{PC system}\label{sec:pc_system}
 \subsection{Seven segment display driver -- \texttt{sseg\_driver.v}}
-\lstinputlisting[style=vcode]{../rtl/sseg_driver.v}
+\lstinputlisting[style=vcode]{../rtl/fpga/sseg_driver.v}
 \subsection{Debug unit -- \texttt{insn\_out.v}}
-\lstinputlisting[style=vcode]{../rtl/insn_out.v}
+\lstinputlisting[style=vcode]{../rtl/fpga/insn_out.v}
 \subsection{SRAM module -- \texttt{sram.v}}
-\lstinputlisting[style=vcode]{../rtl/sram.v}
+\lstinputlisting[style=vcode]{../rtl/fpga/sram.v}
 \subsection{Memory decoder -- \texttt{memory\_decoder.v}}
-\lstinputlisting[style=vcode]{../rtl/memory_decoder.v}
+\lstinputlisting[style=vcode]{../rtl/fpga/memory_decoder.v}
 \subsection{Program memory subsystem -- \texttt{progmem.v}}
-\lstinputlisting[style=vcode]{../rtl/progmem.v}
+\lstinputlisting[style=vcode]{../rtl/fpga/progmem.v}

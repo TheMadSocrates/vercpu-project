@@ -1,0 +1,9 @@
+*
+!*/
+!*.bib
+!*.tex
+!*.pdf
+!*.eps
+!*.v
+!.gitignore
+report.pdf
